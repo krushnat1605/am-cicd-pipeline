@@ -1,44 +1,27 @@
-AWSTemplateFormatVersion: "2010-09-09"
-Description: "CloudFormation template to create an IAM User and an S3 Bucket."
+AWSTemplateFormatVersion: '2010-09-09'
 Resources:
- # IAM User
- CICDIAMUser:
-   Type: AWS::IAM::User
+ S3Bucket:
+   Type: AWS::S3::Bucket
    Properties:
-     UserName: "CICDUserKrushnat"
-     Path: "/"
+     BucketName: krushnat-bucket-demo-github
+
+ IAMRole:
+   Type: AWS::IAM::Role
+   Properties:
+     RoleName: LrushnatCICDGithubRole
+     AssumeRolePolicyDocument:
+       Version: '2012-10-17'
+       Statement:
+         - Effect: Allow
+           Principal:
+             Service: ec2.amazonaws.com
+           Action: sts:AssumeRole
      Policies:
-       - PolicyName: "CICDUserPolicy"
+       - PolicyName: MySamplePolicyS3Access
          PolicyDocument:
-           Version: "2012-10-17"
+           Version: '2012-10-17'
            Statement:
              - Effect: Allow
                Action:
-                 - "s3:*"
-                 - "cloudformation:*"
+                 - s3:*
                Resource: "*"
- # IAM Access Key for Programmatic Access
- CICDUserAccessKey:
-   Type: AWS::IAM::AccessKey
-   Properties:
-     UserName: !Ref CICDIAMUser
-     Status: Active
- # S3 Bucket
- CICDS3Bucket:
-   Type: AWS::S3::Bucket
-   Properties:
-     BucketName: !Sub "cicd-bucket-${AWS::AccountId}-${AWS::Region}"
-     AccessControl: Private
-Outputs:
- IAMUserName:
-   Description: "The name of the IAM user created for CICD"
-   Value: !Ref CICDIAMUser
- AccessKeyId:
-   Description: "Access Key ID for the IAM user"
-   Value: !Ref CICDUserAccessKey
- SecretAccessKey:
-   Description: "Secret Access Key for the IAM user"
-   Value: !GetAtt CICDUserAccessKey.SecretAccessKey
- S3BucketName:
-   Description: "The name of the S3 bucket created for CICD"
-   Value: !Ref CICDS3Bucket
