@@ -5,7 +5,7 @@ Resources:
  CICDIAMUser:
    Type: AWS::IAM::User
    Properties:
-     UserName: "CICDUserKrushnat-iam-cicd-pipeline"
+     UserName: "CICDUserKrushnat"
      Path: "/"
      Policies:
        - PolicyName: "CICDUserPolicy"
