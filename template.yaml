@@ -17,6 +17,18 @@ Resources:
                  - "s3:*"
                  - "cloudformation:*"
                Resource: "*"
+     UserName: "KrushnatCICDUser"
+     Path: "/"
+     Policies:
+       - PolicyName: "CICDUserPolicy"
+         PolicyDocument:
+           Version: "2012-10-17"
+           Statement:
+             - Effect: Allow
+               Action:
+                 - "s3:*"
+                 - "cloudformation:*"
+               Resource: "*"
  # IAM Access Key for Programmatic Access
  CICDUserAccessKey:
    Type: AWS::IAM::AccessKey
