@@ -16,6 +16,14 @@ Resources:
            Principal:
              Service: ec2.amazonaws.com
            Action: sts:AssumeRole
+     RoleName: Krushnat-CICD-IAM-githubRole
+     AssumeRolePolicyDocument:
+       Version: '2012-10-17'
+       Statement:
+         - Effect: Allow
+           Principal:
+             Service: ec2.amazonaws.com
+           Action: sts:AssumeRole
      Policies:
        - PolicyName: MySamplePolicyS3Access
          PolicyDocument:
