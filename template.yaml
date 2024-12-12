@@ -5,19 +5,7 @@ Resources:
  CICDIAMUser:
    Type: AWS::IAM::User
    Properties:
-     UserName: "CICDUser"
-     Path: "/"
-     Policies:
-       - PolicyName: "CICDUserPolicy"
-         PolicyDocument:
-           Version: "2012-10-17"
-           Statement:
-             - Effect: Allow
-               Action:
-                 - "s3:*"
-                 - "cloudformation:*"
-               Resource: "*"
-     UserName: "KrushnatCICDUser"
+     UserName: "CICDUserKrushnat-iam-cicd-pipeline"
      Path: "/"
      Policies:
        - PolicyName: "CICDUserPolicy"
