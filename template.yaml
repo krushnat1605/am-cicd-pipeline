@@ -8,7 +8,7 @@ Resources:
  IAMRole:
    Type: AWS::IAM::Role
    Properties:
-     RoleName: LrushnatCICDGithubRole
+     RoleName: Krushnat-CICD-githubRole
      AssumeRolePolicyDocument:
        Version: '2012-10-17'
        Statement:
